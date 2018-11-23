@@ -14,8 +14,10 @@ const state: ApplicationState = {
     sexGroup: [],
     subCohorts: [],
     collectionPoint: ['baseline'],
+    topic: undefined,
     searchTerm: 'hallo, ik sta in de state'
   },
+  openTopics: [],
   selectedDataItems: ['var1']
 }
 

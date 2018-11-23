@@ -13,6 +13,8 @@ export default {
     const toVueTopic = (topic: Topic): VueTopic => ({
       id: topic.id,
       label: topic.label,
+      open: state.openTopics.includes(topic.id),
+      selected: state.selectedOptions.topic === topic.id,
       children: state.topics
         .filter(child => child.parentTopicId === topic.id)
         .filter(child => child.id !== topic.id)
@@ -21,6 +23,11 @@ export default {
     return state.topics
       .filter(isRootTopic)
       .map(toVueTopic)
+  },
+  topicList: (state: ApplicationState, getters: {topicTree: VueTopic[]}): VueTopic[] => {
+    const treeWalker = (previous: VueTopic[], current: VueTopic): VueTopic[] =>
+      current.open ? current.children.reduce(treeWalker,[...previous, current]) : [...previous, current]
+    return getters.topicTree.reduce(treeWalker, [] as VueTopic[])
   },
   vueDataItems: (state: ApplicationState): VueDataItem[] =>
       state.dataItems.map(item => ({
