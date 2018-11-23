@@ -39,5 +39,7 @@ export default {
         topic: lookup([item.topic], state.topics)[0],
         selected: state.selectedDataItems.includes(item.id),
         enabled: true
-      }))
+      })).filter(item =>
+        !state.selectedOptions.topic || state.selectedOptions.topic === item.topic.id
+      )
 }
