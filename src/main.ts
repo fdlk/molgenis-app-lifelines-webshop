@@ -10,10 +10,10 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import BootstrapVueTreeview from 'bootstrap-vue-treeview/dist/bootstrap-vue-treeview.esm.js'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faQuestionCircle, faSave, faUndo, faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faQuestionCircle, faSave, faUndo, faSearch, faUsers, faCalendar } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faQuestionCircle, faSave, faUndo, faSearch)
+library.add(faQuestionCircle, faSave, faUndo, faSearch, faUsers, faCalendar)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
