@@ -61,11 +61,10 @@ export default {
   },
 
   toggleTopicOpen (state: ApplicationState, id: string) {
-    const index = state.openTopics.indexOf(id)
-    if (index === -1) {
-      state.openTopics.push(id)
+    if (state.openTopics.includes(id)) {
+      state.openTopics = [id]
     } else {
-      state.openTopics.splice(index, 1)
+      state.openTopics = []
     }
   }
 }
