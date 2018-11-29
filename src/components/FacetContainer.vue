@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <Facet v-for="facet in this.facets" :categoricalFacet="facet"></Facet>
-    </div>
+  <Facet v-for="facet in this.facets" :categoricalFacet="facet" :key="facet.id"></Facet>
 </template>
 
 <script>
