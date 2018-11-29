@@ -47,7 +47,7 @@
                     <b-col md="12">
                         <b-row>
                             <b-col>
-                                <Facet v-for="facet in [this.$store.state.categoricalFacets.collectionPoint]" :categoricalFacet="facet"></Facet>
+                                <Facet :categoricalFacet="this.$store.state.categoricalFacets.collectionPoint"></Facet>
                             </b-col>
                         </b-row>
                         <b-row class="mt-1">
