@@ -1,7 +1,7 @@
 <template>
-    <b-card :header="this.title ? this.title : ''" bg-variant="default">
+    <div>
         <Facet v-for="facet in this.facets" :categoricalFacet="facet"></Facet>
-    </b-card>
+    </div>
 </template>
 
 <script>

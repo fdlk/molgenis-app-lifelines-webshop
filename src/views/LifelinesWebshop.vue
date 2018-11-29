@@ -3,10 +3,10 @@
 
         <b-row class="pt-2" align-h="between">
             <b-col md="2">
-                <h3 class="nav-title font-weight-bold">Filter items</h3>
+                <h3 class="nav-title font-weight-bold">1. Select cohorts</h3>
             </b-col>
             <b-col md="2">
-                <h3 class="nav-title font-weight-bold">Data items</h3>
+                <h3 class="nav-title font-weight-bold">2. Select data</h3>
             </b-col>
             <b-col md="4">
                 <SearchBar></SearchBar>
@@ -44,21 +44,22 @@
                         </FacetContainer>
                     </b-col>
                 </b-row>
-                <b-row>
-                    <b-col>
-                        <hr/>
-                        <FacetContainer :facets="[this.$store.state.categoricalFacets.collectionPoint]"></FacetContainer>
-                    </b-col>
-                </b-row>
             </b-col>
             <b-col md="10">
                 <b-row>
                     <b-col>
+                        <Facet v-for="facet in [this.$store.state.categoricalFacets.collectionPoint]" :categoricalFacet="facet"></Facet>
+                    </b-col>
+                </b-row>
+                <b-row class="mt-3">
+                    <b-col>
                         <b-row>
                             <b-col md="3">
+                                <h6>Variables</h6>
                                 <topic-tree></topic-tree>
                             </b-col>
                             <b-col md="9">
+
                                 <data-items :dataItems="vueDataItems" v-if="vueDataItems.length"></data-items>
                             </b-col>
                         </b-row>
@@ -72,6 +73,7 @@
 <script>
   import Vue from 'vue'
   import FacetContainer from '@/components/FacetContainer.vue'
+  import Facet from '@/components/Facet.vue'
   import DataItems from '@/components/DataItems.vue'
   import TopicTree from '@/components/TopicTree.vue'
   import SearchBar from '@/components/SearchBar.vue'
@@ -79,7 +81,7 @@
 
   export default Vue.extend({
     name: 'LifelinesWebshop',
-    components: { DataItems, TopicTree, SearchBar, FacetContainer },
+    components: { DataItems, TopicTree, SearchBar, FacetContainer, Facet },
     props: {
       msg: String
     },
@@ -110,6 +112,9 @@
 <style scoped>
     h3.nav-title {
         color: #276daa;
+    }
+    h6 {
+        color: #00ACC7;
     }
 </style>
 
