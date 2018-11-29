@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-button @click="selectAll">{{ allSelected ? 'Deselect all' : 'Select all' }}</b-button>
+    <b-button size="sm" @click="selectAll">{{ allSelected ? 'Deselect all' : 'Select all' }}</b-button>
     <b-list-group>
       <data-item-card v-for="dataItem in dataItems"
                       :dataItem="dataItem"
