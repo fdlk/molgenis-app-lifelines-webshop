@@ -68,7 +68,7 @@ export default {
       item.sexGroups.some(sexGroup => selectedSexGroups.has(sexGroup.id)) &&
       item.subCohorts.some(subCohort => selectedSubCohorts.has(subCohort.id)) &&
       item.collectionPoints.some(collectionPoint => selectedCollectionPoints.has(collectionPoint.id))
-        // && item.ageGroups.some(ageGroup => selectedAgeGroups.has(ageGroup.id))
+    // && item.ageGroups.some(ageGroup => selectedAgeGroups.has(ageGroup.id))
   },
   dataItemSelected: (state: ApplicationState): DataItemPredicate => {
     const selectedDataItems = new Set(state.selectedDataItems)
@@ -80,16 +80,16 @@ export default {
       return []
     }
     return selectedTopic.dataItems
-        .map((id: string): (DataItem | undefined) => state.allDataItems[id])
-        .filter(isDefined as TermGuard<DataItem>)
+      .map((id: string): (DataItem | undefined) => state.allDataItems[id])
+      .filter(isDefined as TermGuard<DataItem>)
   },
   vueDataItems: (state: ApplicationState, getters: Getters): VueDataItem[] =>
     getters.topicDataItems
-    .map(item => ({
-      ...item,
-      enabled: getters.dataItemEnabled(item),
-      selected: getters.dataItemSelected(item)
-    })),
+      .map(item => ({
+        ...item,
+        enabled: getters.dataItemEnabled(item),
+        selected: getters.dataItemSelected(item)
+      })),
   selectedAgeGroups: (state: ApplicationState): string[] => state.selectedOptions.ageGroup,
   selectedSexGroups: (state: ApplicationState): string[] => state.selectedOptions.sexGroup,
   selectedCollectionPoints: (state: ApplicationState): string[] => state.selectedOptions.collectionPoint,
@@ -104,12 +104,12 @@ export default {
   selectedTree: (state: ApplicationState, getters: Getters): any => {
     const filter = (node: TopicNode): any | undefined => {
       const filteredChildren: TopicNode[] = node.children
-      .map(filter)
-      .filter(isDefined as TermGuard<TopicNode>)
+        .map(filter)
+        .filter(isDefined as TermGuard<TopicNode>)
       const filteredDataItems: DataItem[] = node.dataItems
-      .map(id => state.allDataItems[id])
-      .filter(isDefined as TermGuard<DataItem>)
-      .filter(dataItem => getters.dataItemSelected(dataItem))
+        .map(id => state.allDataItems[id])
+        .filter(isDefined as TermGuard<DataItem>)
+        .filter(dataItem => getters.dataItemSelected(dataItem))
       if (filteredChildren.length || filteredDataItems.length) {
         return { ...node, children: [...filteredChildren, ...filteredDataItems] }
       }
@@ -117,4 +117,5 @@ export default {
     }
     return state.topicTree.map(filter).filter(isDefined as TermGuard<any>)
   },
-  searchTerm:  (state: ApplicationState): string => state.selectedOptions.searchTerm
+  searchTerm: (state: ApplicationState): string => state.selectedOptions.searchTerm
+}
