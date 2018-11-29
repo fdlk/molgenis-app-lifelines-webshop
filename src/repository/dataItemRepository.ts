@@ -20,7 +20,7 @@ const toDataItem = (item: any): RawDataItem => {
 
 export default {
   getAll (): Promise<RawDataItem[]> {
-    return api.get('api/v2/lifelines_dataItems?num=10000').then((response: any) => {
+    return api.get('/api/v2/lifelines_dataItems?num=10000').then((response: any) => {
       return response.items.map(toDataItem)
     })
   }

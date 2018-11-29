@@ -1,4 +1,6 @@
 import ApplicationState, { CategoricalFacetOption, Indexed, Lookups, Topic } from '@/types/store'
+// @ts-ignore
+export const INITIAL_STATE = window.__INITIAL_STATE__ || {}
 
 const state: ApplicationState = {
   allDataItems: {},
