@@ -1,6 +1,6 @@
 <template>
     <b-list-group-item @click="$emit('click')"
-                       button
+                       href="#"
                        class="d-flex justify-content-between align-items-center data-item-card"
                        :active="dataItem.enabled && dataItem.selected"
                        :disabled="!dataItem.enabled">
