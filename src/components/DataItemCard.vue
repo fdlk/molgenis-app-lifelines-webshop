@@ -51,13 +51,17 @@
 </script>
 
 <style>
-    button.list-group-item:disabled span,
-    button.list-group-item[disabled] span {
-        color: rgba(108, 117, 125, 0.5);
+    a.list-group-item-action.disabled,
+    a.list-group-item-action[disabled] {
+      cursor: default;
     }
 
-    button.list-group-item:disabled svg,
-    button.list-group-item[disabled] svg {
+    a.list-group-item-action.disabled div > span.badge,
+    a.list-group-item-action[disabled] span.badge,
+    a.list-group-item-action.disabled svg,
+    a.list-group-item-action[disabled] svg {
         color: rgba(108, 117, 125, 0.5);
+        background-color: #f2fafb;
+        cursor: default;
     }
 </style>
