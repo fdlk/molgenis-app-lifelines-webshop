@@ -33,15 +33,15 @@ export default {
         return node
       }
       const filteredChildren: TopicNode[] = node.children
-        .map(filter)
-        .filter(isDefined as TermGuard<TopicNode>)
+      .map(filter)
+      .filter(isDefined as TermGuard<TopicNode>)
       const filteredDataItems: string[] = node.dataItems
-        .map(id => state.allDataItems[id])
-        .filter(isDefined as TermGuard<DataItem>)
-        .filter(dataItem => matches(dataItem.label))
-        .map(dataItem => dataItem.id)
+      .map(id => state.allDataItems[id])
+      .filter(isDefined as TermGuard<DataItem>)
+      .filter(dataItem => matches(dataItem.label))
+      .map(dataItem => dataItem.id)
       if (filteredChildren.length || filteredDataItems.length) {
-        return { ...node, children: filteredChildren, dataItems: filteredDataItems }
+        return {...node, children: filteredChildren, dataItems: filteredDataItems}
       }
       return undefined
     }
@@ -65,9 +65,9 @@ export default {
     const selectedSexGroups = new Set(state.selectedOptions.sexGroup)
     const selectedSubCohorts = new Set(state.selectedOptions.subCohorts)
     return (item: DataItem): boolean =>
-      item.sexGroups.some(sexGroup => selectedSexGroups.has(sexGroup.id)) &&
-      item.subCohorts.some(subCohort => selectedSubCohorts.has(subCohort.id)) &&
-      item.collectionPoints.some(collectionPoint => selectedCollectionPoints.has(collectionPoint.id))
+        item.sexGroups.some(sexGroup => selectedSexGroups.has(sexGroup.id)) &&
+        item.subCohorts.some(subCohort => selectedSubCohorts.has(subCohort.id)) &&
+        item.collectionPoints.some(collectionPoint => selectedCollectionPoints.has(collectionPoint.id))
     // && item.ageGroups.some(ageGroup => selectedAgeGroups.has(ageGroup.id))
   },
   dataItemSelected: (state: ApplicationState): DataItemPredicate => {
@@ -84,7 +84,7 @@ export default {
       .filter(isDefined as TermGuard<DataItem>)
   },
   vueDataItems: (state: ApplicationState, getters: Getters): VueDataItem[] =>
-    getters.topicDataItems
+      getters.topicDataItems
       .map(item => ({
         ...item,
         enabled: getters.dataItemEnabled(item),
@@ -96,10 +96,10 @@ export default {
   selectedSubCohorts: (state: ApplicationState): string[] => state.selectedOptions.subCohorts,
   selectionCount: (state: ApplicationState, getters: Getters): number => {
     return Object.values(state.allDataItems)
-      .filter(isDefined as TermGuard<DataItem>)
-      .filter(getters.dataItemEnabled)
-      .filter(getters.dataItemSelected)
-      .length
+    .filter(isDefined as TermGuard<DataItem>)
+    .filter(getters.dataItemEnabled)
+    .filter(getters.dataItemSelected)
+        .length
   },
   selectedTree: (state: ApplicationState, getters: Getters): any => {
     const filter = (node: TopicNode): any | undefined => {
@@ -111,7 +111,7 @@ export default {
         .filter(isDefined as TermGuard<DataItem>)
         .filter(dataItem => getters.dataItemSelected(dataItem))
       if (filteredChildren.length || filteredDataItems.length) {
-        return { ...node, children: [...filteredChildren, ...filteredDataItems] }
+        return {...node, children: [...filteredChildren, ...filteredDataItems]}
       }
       return undefined
     }
