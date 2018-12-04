@@ -11,23 +11,22 @@
   </div>
 </template>
 
-<script lang="ts">
+<script >
 import Vue from 'vue'
 import DataItemCard from './DataItemCard.vue'
-import { VueDataItem } from '../types/vue'
 import { mapMutations } from 'vuex'
 
 export default Vue.extend({
   name: 'DataItems',
   props: {
-    dataItems: Array as () => VueDataItem[]
+    dataItems: Array
   },
   methods: {
     ...mapMutations(['toggleDataItem', 'selectAll'])
   },
   computed: {
-    allSelected (): boolean {
-      return this.dataItems.every((item: VueDataItem): boolean => item.enabled && item.selected)
+    allSelected () {
+      return this.dataItems.every((item) => item.enabled && item.selected)
     }
   },
   components: { DataItemCard }

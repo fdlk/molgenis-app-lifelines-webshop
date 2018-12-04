@@ -34,15 +34,14 @@
     </b-list-group-item>
 </template>
 
-<script lang="ts">
-  // @ts-ignore
+<script>
   import Vue from 'vue'
   import { VueDataItem } from '../types/vue'
   import { mapState } from 'vuex'
 
   export default Vue.extend({
     props: {
-      dataItem: Object as () => VueDataItem
+      dataItem: VueDataItem
     },
     computed: {
       ...mapState(['selectedOptions'])

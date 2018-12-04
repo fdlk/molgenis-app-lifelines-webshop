@@ -41,7 +41,7 @@ export default {
       .filter(dataItem => matches(dataItem.label))
       .map(dataItem => dataItem.id)
       if (filteredChildren.length || filteredDataItems.length) {
-        return {...node, children: filteredChildren, dataItems: filteredDataItems}
+        return { ...node, children: filteredChildren, dataItems: filteredDataItems }
       }
       return undefined
     }
@@ -111,7 +111,7 @@ export default {
         .filter(isDefined as TermGuard<DataItem>)
         .filter(dataItem => getters.dataItemSelected(dataItem))
       if (filteredChildren.length || filteredDataItems.length) {
-        return {...node, children: [...filteredChildren, ...filteredDataItems]}
+        return { ...node, children: [...filteredChildren, ...filteredDataItems] }
       }
       return undefined
     }
