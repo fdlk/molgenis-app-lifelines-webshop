@@ -29,4 +29,8 @@
         margin: 0.2rem;
         min-width: 4rem;
     }
+
+    button.btn-outline-primary:hover {
+        background-color: #a3e1ea;
+    }
 </style>
