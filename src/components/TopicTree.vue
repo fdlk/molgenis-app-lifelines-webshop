@@ -2,7 +2,7 @@
     <b-list-group>
         <b-list-group-item v-for="topic in topicList"
                            :key="topic.id"
-                           :button="true"
+                           href="#"
                            :variant="topic.children.length ? 'secondary' : 'default'"
                            :active="topic.selected"
                            @click="topicClick(topic)">
