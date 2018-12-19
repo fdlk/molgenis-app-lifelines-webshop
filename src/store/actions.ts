@@ -1,14 +1,7 @@
-import dataItemRepository from '@/repository/dataItemRepository'
 import topicRepository from '@/repository/topicRepository'
 import categoricalFacetRepository from '@/repository/categoricalFacetRepository'
 
 export default {
-
-  getDataItems ({ commit }: any): void {
-    dataItemRepository.getAll().then((dataItems) => {
-      commit('setDataItems', dataItems)
-    }).catch()
-  },
 
   getTopics ({ commit }: any) {
     topicRepository.getAll().then((topics) => {

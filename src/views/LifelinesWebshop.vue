@@ -109,7 +109,6 @@
       ...mapGetters(['vueDataItems', 'selectionCount'])
     },
     mounted () {
-      this.getDataItems()
       this.getTopics()
       this.getAgeGroups()
       this.getSexGroups()

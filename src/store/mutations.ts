@@ -78,27 +78,20 @@ export default {
           collectionPoints: item.collectionPoints.map(collectionPoint => state.lookups.collectionPoint[collectionPoint]).filter(isDefined as TermGuard<CategoricalFacetOption>),
           ageGroups: item.ageGroups.map(ageGroup => state.lookups.ageGroup[ageGroup]).filter(isDefined as TermGuard<CategoricalFacetOption>),
           sexGroups: item.sexGroups.map(sexGroup => state.lookups.sexGroup[sexGroup]).filter(isDefined as TermGuard<CategoricalFacetOption>),
-          subCohorts: item.subCohorts.map(subCohort => state.lookups.subCohorts[subCohort]).filter(isDefined as TermGuard<CategoricalFacetOption>),
-          topic: [state.lookups.topics[item.topic]].filter(isDefined as TermGuard<Topic>)[0] // hack!!
+          subCohorts: item.subCohorts.map(subCohort => state.lookups.subCohorts[subCohort]).filter(isDefined as TermGuard<CategoricalFacetOption>)
         }))
       .reduce(indexer, {} as Indexed<DataItem>)
   },
 
-  setTopics (state: ApplicationState, topics: Topic[]) {
+  setTopics (state: ApplicationState, topics: TopicNode[]) {
     state.topics = topics
-    const isRootTopic = (topic: Topic): boolean => !topic.parentTopicId || topic.parentTopicId === topic.id
-    const toTopicNode = (topic: Topic): TopicNode => ({
-      id: topic.id,
-      label: topic.label,
-      dataItems: topic.dataItems,
-      children: state.topics
-      .filter(child => child.parentTopicId === topic.id)
-      .filter(child => child.id !== topic.id)
-      .map(toTopicNode)
-    })
-    state.topicTree = state.topics
-      .filter(isRootTopic)
-      .map(toTopicNode)
+    const isRootTopic = (topic: TopicNode): boolean => {
+      const parent = topics.find((someTopic: TopicNode) => {
+        return someTopic.children.map((child: TopicNode) => child.id).includes(topic.id)
+      })
+      return !!parent // if no parent then its a root
+    }
+    state.topicTree = state.topics.filter(isRootTopic)
     state.lookups.topics = topics.reduce(indexer, {} as Indexed<Topic>)
   },
 
