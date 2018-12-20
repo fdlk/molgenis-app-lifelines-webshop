@@ -26,7 +26,7 @@ export interface Lookups {
   ageGroup: Indexed<CategoricalFacetOption>
   sexGroup: Indexed<CategoricalFacetOption>
   subCohorts: Indexed<CategoricalFacetOption>
-  topics: Indexed<Topic>
+  topics: Indexed<TopicNode>
 }
 
 export interface RawDataItem extends Identifiable {
@@ -34,7 +34,6 @@ export interface RawDataItem extends Identifiable {
   sexGroups: string[]
   subCohorts: string[]
   collectionPoints: string[]
-  topic: string
   label: string
   ordinalPosition: number
   description: string
@@ -45,19 +44,14 @@ export interface DataItem extends Identifiable {
   sexGroups: CategoricalFacetOption[]
   subCohorts: CategoricalFacetOption[]
   collectionPoints: CategoricalFacetOption[]
-  topic: Topic
   label: string
   description: string
 }
 
-export interface Topic extends Identifiable {
+export interface TopicNode extends Identifiable {
   label: string
-  parentTopicId?: string
-  dataItems: string[]
-}
-
-export interface TopicNode extends Topic {
   children: TopicNode[]
+  dataItems: string[]
 }
 
 export type SelectedOptions = {
@@ -71,7 +65,6 @@ export type SelectedOptions = {
 
 export interface ApplicationState {
   allDataItems: Indexed<DataItem>
-  topics: Topic[]
   topicTree: TopicNode[]
   categoricalFacets: CategoricalFacets
   selectedOptions: SelectedOptions

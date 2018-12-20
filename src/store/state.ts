@@ -1,10 +1,9 @@
-import ApplicationState, { CategoricalFacetOption, Indexed, Lookups, Topic } from '@/types/store'
+import ApplicationState, { CategoricalFacetOption, Indexed, Lookups } from '@/types/store'
 // @ts-ignore
 export const INITIAL_STATE = window.__INITIAL_STATE__ || {}
 
 const state: ApplicationState = {
   allDataItems: {},
-  topics: [],
   topicTree: [],
   categoricalFacets: {
     collectionPoint: { id: 'collectionPoint', label: '', options: [], description: '' },

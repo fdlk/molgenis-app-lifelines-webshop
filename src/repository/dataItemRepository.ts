@@ -11,7 +11,6 @@ const toDataItem = (item: any): RawDataItem => {
     sexGroups: item.sexGroups.map(refToId),
     subCohorts: item.subcohorts.map(refToId),
     collectionPoints: item.collections.map(refToId),
-    topic: item.topic.id,
     label: item.label,
     ordinalPosition: item.ordinalPosition,
     description: item.description
