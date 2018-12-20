@@ -65,7 +65,6 @@ export type SelectedOptions = {
 
 export interface ApplicationState {
   allDataItems: Indexed<DataItem>
-  topics: TopicNode[]
   topicTree: TopicNode[]
   categoricalFacets: CategoricalFacets
   selectedOptions: SelectedOptions

@@ -6,7 +6,6 @@ import {
   Indexed,
   Lookups,
   TermGuard,
-  Topic,
   TopicNode
 } from '@/types/store'
 import { VueDataItem, VueTopic } from '@/types/vue'

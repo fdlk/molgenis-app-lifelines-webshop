@@ -4,8 +4,15 @@ import { TopicNode } from '@/types/store'
 
 export default {
   getAll (): Promise<TopicNode[]> {
-    return api.get('/api/v2/lifelines_topics?num=10000?attrs=id,label,children(id,label,children(id, label, dataItems(id, label))').then((response: any) => {
+    return api.get('/api/v2/lifelines_topics?num=10000&q=dataItems==""&attrs=id,label,children(id,label,children,dataItems(*)),dataItems').then((response: any) => {
       return response.items
+      .map((respTopic: any) => {
+        respTopic.children = respTopic.children.map((subTopic: any) => {
+          subTopic.dataItems = subTopic.dataItems.map((item: any) => item.id)
+          return subTopic
+        })
+        return respTopic
+      })
     })
   }
 }

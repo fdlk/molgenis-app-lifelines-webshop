@@ -8,7 +8,6 @@ import {
   Lookups,
   RawDataItem,
   TermGuard,
-  Topic,
   TopicNode
 } from '@/types/store'
 import { isDefined, indexer } from '@/store/helpers'
@@ -84,15 +83,8 @@ export default {
   },
 
   setTopics (state: ApplicationState, topics: TopicNode[]) {
-    state.topics = topics
-    const isRootTopic = (topic: TopicNode): boolean => {
-      const parent = topics.find((someTopic: TopicNode) => {
-        return someTopic.children.map((child: TopicNode) => child.id).includes(topic.id)
-      })
-      return !!parent // if no parent then its a root
-    }
-    state.topicTree = state.topics.filter(isRootTopic)
-    state.lookups.topics = topics.reduce(indexer, {} as Indexed<Topic>)
+    state.topicTree = topics
+    state.lookups.topics = topics.reduce(indexer, {} as Indexed<TopicNode>)
   },
 
   setAgeGroups (state: ApplicationState, ageGroups: CategoricalFacet) {
